@@ -47,7 +47,7 @@ class Framework:
    
     def transform(self, cudir, lst): #helper method to scanDirectory()
         for i in range(len(lst)):
-            lst[i] = cudir+'\\'+lst[i]
+            lst[i] = cudir+'/'+lst[i]
 
     def appendStack(self, stack, lst):  #helper method to scanDirectory()
         for i in lst:
