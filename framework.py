@@ -23,8 +23,8 @@ class Framework:
         self.db = Database(); #creates a database instance for the Framework
 
         if not self.upToDate(): #checks to see if this is the first time of running 
-            self.scanDirectory('C:\\')  #the program. 
-            update();   
+            self.scanDirectory('/')  #the program. 
+            self.update();   
 
     def __del__(self): #destructor helps to close open resources.
         if self.__isOpen: # closes log file if open.
@@ -92,7 +92,7 @@ class Framework:
     def showAll(self):      #supposed to show all files in the database.
         query = "select %s, count(%s) as noOfDuplicates from %s group by %s having (count(%s)>1)" %(NAME_KEY, NAME_KEY, TABLE_NAME, NAME_KEY, NAME_KEY);
         self.db.select(select = query);
-
+        # print("Showing all");
         cur = self.db.getCursor();
 
         for col in cur:
