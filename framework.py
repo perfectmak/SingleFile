@@ -10,6 +10,7 @@
 
 import os
 import time
+import platform
 
 from file import *
 from database import *
@@ -79,10 +80,16 @@ class Framework:
                     print(curItem)
                     continue
             elif os.path.isdir(curItem):
-                try:
-                    tmpStack = os.listdir(curItem)
-                except WindowsError:
-                    continue
+                if platform.system() == 'Linux': #for linux systems               
+                    try:
+                        tmpStack = os.listdir(curItem)
+                    except OSError:
+                        continue
+                else: #assuming that it is windows
+                    try:
+                        tmpStack = os.listdir(curItem)
+                    except WindowsError:
+                        continue
             
                 self.transform(curItem, tmpStack)
                 self.appendStack(filestack, tmpStack)
